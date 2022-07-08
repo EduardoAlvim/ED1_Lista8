@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Faça uma função que compare duas listas encadeadas e retorne para o programa
-principal qual é a maior e quantos elementos ela tem.
+/*FaÃ§a uma funÃ§Ã£o que compare duas listas encadeadas e retorne para o programa
+principal qual Ã© a maior e quantos elementos ela tem.
 */
 
 typedef struct no
@@ -24,7 +24,7 @@ void insere_lista(noptr **inicio,noptr *novo, int valor)
     }
 }
 
-void mostra_maior(noptr *i1,noptr *i2)
+int mostra_maior(noptr *i1,noptr *i2,int *r)
 {
     int cont1=0,cont2=0;
     noptr *p;
@@ -41,11 +41,20 @@ void mostra_maior(noptr *i1,noptr *i2)
         p=p->prox;
     }
     if(cont1 > cont2)
-        printf("\nA lista 1 e a maior e tem %d elementos",cont1);
+    {
+        *r = cont1;
+        return 1;
+    }
     else if(cont1 < cont2)
-        printf("\nA lista 2 e a maior e tem %d elementos",cont2);
+    {
+        *r = cont2;
+        return 2;
+    }
     else
-        printf("\nAs duas listas sao iguais e tem %d elementos",cont1);
+    {
+        *r = cont1;
+        return 0;
+    }
 }
 
 void main()
@@ -56,7 +65,7 @@ void main()
     int valor, resp;
     do
     {
-         printf("\n Menu\n1 Inserir na lista 1; \n2 Inserir na lista 2; \n3 Mostrar a maior lista\n0 Sair \n");
+        printf("\n Menu\n1 Inserir na lista 1; \n2 Inserir na lista 2; \n3 Mostrar a maior lista\n0 Sair \n");
         scanf("%d",&resp);
         if(resp == 1)
         {
@@ -84,7 +93,20 @@ void main()
         }
         else if(resp == 3)
         {
-            mostra_maior(ini1,ini2);
+            int retorno, quant=0;
+            retorno = mostra_maior(ini1,ini2,&quant);
+            if(retorno == 1)
+            {
+                printf("\nA lista 1 e maior e possui %d elementos",quant);
+            }
+            else if(retorno == 2)
+            {
+                printf("\nA lista 2 e maior e possui %d elementos",quant);
+            }
+            else
+            {
+                printf("\nAs duas listas 2 sao iguais e possuem %d elementos",quant);
+            }
         }
         else if(resp == 0)
         {
@@ -97,3 +119,4 @@ void main()
     }
     while(resp != 0);
 }
+
