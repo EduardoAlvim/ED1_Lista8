@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Faça uma função que una duas listas encadeadas, no final da primeira, coloque a
+/*FaÃ§a uma funÃ§Ã£o que una duas listas encadeadas, no final da primeira, coloque a
 segunda. Mostre o resultado.
 */
 
@@ -24,14 +24,17 @@ void insere_lista(noptr **inicio,noptr *novo, int valor)
     }
 }
 
-void mostra_maior(noptr **i1,noptr *i2)
+void unir(noptr **i1,noptr *i2)
 {
     noptr *p;
+    noptr *q;
     p=*i1;
-    while(n){
+    q=i2;
+    while(q){
     while(p->prox!=NULL)
         p=p->prox;
     p->prox=novo;
+    q=q->prox;
     }
 
 }
