@@ -10,7 +10,6 @@ typedef struct no
     int dado;
     struct no *prox;
 } noptr;
-noptr *ini1, *ini2;
 
 void insere_lista(noptr **inicio,noptr *novo, int valor)
 {
@@ -33,20 +32,39 @@ void unir(noptr **i1,noptr *i2)
     while(q){
     while(p->prox!=NULL)
         p=p->prox;
-    p->prox=novo;
+    p->prox=p;
     q=q->prox;
     }
 
 }
+
+void lista_todos(noptr *inicio)
+{
+    if(inicio == NULL)
+    {
+        printf("\nLista Vazia!!!");
+        return;
+    }
+    noptr *p;
+    p = inicio;
+    while(p != NULL)
+    {
+        printf("\nDados: %d",p->dado);
+        p = p->prox;
+    }
+    printf("\n");
+}
+
 void main()
 {
+    noptr *ini1, *ini2;
     ini1=NULL;
     ini2=NULL;
     noptr *info;
     int valor, resp;
     do
     {
-        printf("\n Menu\n1 Inserir na lista 1; \n2 Inserir na lista 2; \n3 Mostrar a maior lista\n0 Sair \n");
+        printf("\n Menu\n1 Inserir na lista 1; \n2 Inserir na lista 2; \n3 Unir na listas\n4 Mostrar lista 1\n0 Sair \n");
         scanf("%d",&resp);
         if(resp == 1)
         {
@@ -74,7 +92,11 @@ void main()
         }
         else if(resp == 3)
         {
-            mostra_maior(ini1,ini2);
+            unir(&ini1,ini2);
+        }
+        else if(resp == 4)
+        {
+            lista_todos(ini1);
         }
         else if(resp == 0)
         {
@@ -87,3 +109,4 @@ void main()
     }
     while(resp != 0);
 }
+
